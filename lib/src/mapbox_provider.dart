@@ -22,7 +22,7 @@ class _MapBoxProviderState extends State<MapBoxProvider> {
             widget.initialCameraPosition.target.latitude,
             widget.initialCameraPosition.target.longitude,
           ),
-          zoom: 13,
+          zoom: widget.initialCameraPosition.zoom,
         ),
         onStyleLoadedCallback: () {},
       ),
