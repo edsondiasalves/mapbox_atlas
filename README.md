@@ -9,6 +9,8 @@
 ### Download the dependencies:
 * `flutter pub get`
 ### Set the credencials
+#### For getting you API Key sign up to the [Google Cloud](https://mapbox.com/)
+
 #### Ios:
 > In the `ios/Runner/Info.plist` file change the highlighted value
 ```
