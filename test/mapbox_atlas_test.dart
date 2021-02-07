@@ -17,7 +17,7 @@ main() {
     );
   });
 
-  group('MapBox Atlas Provider', () {
+  group('MapBox Atlas', () {
     MapBoxAtlas mapBoxAtlas;
     CameraPosition initialCameraPosition;
 

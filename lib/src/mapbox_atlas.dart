@@ -26,6 +26,7 @@ class MapBoxAtlas extends Provider {
   }) {
     return MapBoxProvider(
       initialCameraPosition: initialCameraPosition,
+      onMapCreated: onMapCreated,
     );
   }
 }
