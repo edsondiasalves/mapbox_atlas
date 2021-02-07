@@ -8,7 +8,7 @@
 - `cd mapbox_atlas`
 ### Download the dependencies:
 * `flutter pub get`
-### Set the credencials
+### Set the credentials
 #### For getting you API Key sign up to the [Google Cloud](https://mapbox.com/)
 
 #### Ios:

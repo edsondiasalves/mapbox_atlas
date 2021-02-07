@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   atlas: 0.12.2
   flutter_bloc: ^6.1.1
+  equatable: ^1.2.5
   mapbox_atlas:
     path: ../
 
