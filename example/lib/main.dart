@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapbox_atlas/mapbox_atlas.dart';
 
 import 'bloc/configuration_bloc.dart';
-import 'utils/extensions.dart';
 
 void main() {
   AtlasProvider.instance = MapBoxAtlas();
@@ -39,17 +38,17 @@ class MapBoxAtlasSample extends StatelessWidget {
       body: BlocListener<ConfigurationBloc, ConfigurationState>(
         listener: (context, state) {
           if (state is CameraChangedState) {
-            _atlasController.moveCamera(
-              state.currentPosition.toCameraPosition(),
-            );
+            _atlasController.moveCamera(state.currentCameraPosition);
           }
         },
         child: BlocBuilder<ConfigurationBloc, ConfigurationState>(
-          buildWhen: (previous, current) => current is InitialPositionState,
+          buildWhen: (previous, current) =>
+              current is InitialPositionState || current is MarkerLoadedState,
           builder: (context, state) {
             return Atlas(
               key: UniqueKey(),
-              initialCameraPosition: state.initialPosition.toCameraPosition(),
+              initialCameraPosition: state.initialCameraPosition,
+              markers: state.markers,
               onMapCreated: (AtlasController atlasController) {
                 _atlasController = atlasController;
               },

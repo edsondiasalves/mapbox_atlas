@@ -26,3 +26,24 @@ LatLng getCityCoordinates(City city) {
       break;
   }
 }
+
+LatLng getMarkerPlaceCoordinates(MarkerPlace markerPlace) {
+  if (markerPlace == null) {
+    return NewYorkCoordinates;
+  }
+
+  switch (markerPlace) {
+    case MarkerPlace.NewYork:
+      return NewYorkCoordinates;
+      break;
+    case MarkerPlace.London:
+      return LondonCoordinates;
+      break;
+    case MarkerPlace.Beijing:
+      return BeijingCoordinates;
+      break;
+    default:
+      return NewYorkCoordinates;
+      break;
+  }
+}

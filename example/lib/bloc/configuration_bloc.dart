@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:atlas/atlas.dart';
 import 'package:equatable/equatable.dart';
 import 'package:example/utils/constants.dart';
+import 'package:example/utils/extensions.dart';
+import 'package:example/utils/market_configuration.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -17,12 +20,24 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
   ) async* {
     if (event is ChangeInitialPositionStarted) {
       yield InitialPositionState(
-        initialPosition: event.city,
+        initialCity: event.initialCity,
+        initialCameraPosition: event.initialCity.toCameraPosition(),
       );
     } else if (event is ChangeCameraPositionStarted) {
       yield CameraChangedState(
-        currentPosition: event.city,
-        initialPosition: state.initialPosition,
+        initialCity: state.initialCity,
+        currentCity: event.currentCity,
+        currentCameraPosition: event.currentCity.toCameraPosition(),
+      );
+    } else if (event is AddMarkersStarted) {
+      final result = ResultEngine().getResult(event.placePosition);
+
+      yield MarkerLoadedState(
+        initialCity: state.initialCity,
+        currentCity: state.currentCity,
+        initialCameraPosition: result.cameraPosition,
+        currentMarkersPlace: event.placePosition,
+        markers: result.markers,
       );
     }
   }
