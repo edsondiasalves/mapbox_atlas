@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/edsondiasalves/mapbox_atlas/branch/main/graph/badge.svg?token=3PH3T41X8K)](https://codecov.io/gh/edsondiasalves/mapbox_atlas)
+
 <h1>An Atlas map provided by MapBox</h1>
 
 ## Getting Started
