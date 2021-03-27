@@ -1,13 +1,13 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
-import 'package:mapbox_gl/mapbox_gl.dart' as Mapbox;
+import 'package:mapbox_gl/mapbox_gl.dart' as MapBox;
 
 import 'utils.dart';
 
 class MapboxAtlasController implements AtlasController {
-  final Mapbox.MapboxMapController _controller;
+  final MapBox.MapboxMapController _controller;
 
-  MapboxAtlasController({@required Mapbox.MapboxMapController controller})
+  MapboxAtlasController({@required MapBox.MapboxMapController controller})
       : assert(controller != null),
         _controller = controller;
 
@@ -37,7 +37,7 @@ class MapboxAtlasController implements AtlasController {
   @override
   Future<void> moveCamera(CameraPosition cameraPosition) {
     _controller.moveCamera(
-      Mapbox.CameraUpdate.newCameraPosition(
+      MapBox.CameraUpdate.newCameraPosition(
         cameraPosition.toMapBoxCameraPosition(),
       ),
     );
@@ -45,8 +45,18 @@ class MapboxAtlasController implements AtlasController {
   }
 
   @override
-  Future<void> updateBounds(LatLngBounds bounds, double padding) {
-    throw UnimplementedError();
+  Future<void> updateBounds(LatLngBounds bounds, double padding) async {
+    await Future.delayed(Duration(seconds: 1));
+
+    final boundingBoxPosition = MapBox.CameraUpdate.newLatLngBounds(
+      bounds.toMapBoxLatLngBounds(),
+      left: padding,
+      top: padding,
+      right: padding,
+      bottom: padding,
+    );
+
+    return _controller.moveCamera(boundingBoxPosition);
   }
 
   @override

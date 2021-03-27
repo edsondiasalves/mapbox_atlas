@@ -15,3 +15,12 @@ extension AtlasToMapBoxCameraPosition on Atlas.CameraPosition {
     );
   }
 }
+
+extension AtlasToMapBoxLatLngBounds on Atlas.LatLngBounds {
+  MapBox.LatLngBounds toMapBoxLatLngBounds() {
+    return MapBox.LatLngBounds(
+      northeast: this.northeast.toMapBoxLatLng(),
+      southwest: this.southwest.toMapBoxLatLng(),
+    );
+  }
+}
